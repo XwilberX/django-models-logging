@@ -9,6 +9,8 @@ from models_logging.settings import LOGGING_USER_MODEL
 
 
 def forwards_func(apps, schema_editor):
+    print('Creating schema for models_logging')
+    print('schema_editor.connection.schema_name: {}'.format(schema_editor.connection.schema_name))
     if connection.schema_name == 'public':
         return
 
