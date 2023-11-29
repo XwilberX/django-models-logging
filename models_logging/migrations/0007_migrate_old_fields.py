@@ -1,11 +1,5 @@
-from django.db import migrations, models, connection
+from django.db import migrations, models
 import models_logging.models
-
-
-def forwards_func(apps, schema_editor):
-    if connection.schema_name == 'public':
-        return
-
 
 class Migration(migrations.Migration):
 
@@ -14,7 +8,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(forwards_func),
         migrations.AlterField(
             model_name='change',
             name='changed_data',

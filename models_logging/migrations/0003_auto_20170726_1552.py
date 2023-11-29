@@ -5,7 +5,7 @@ import json
 from dateutil import parser
 from decimal import Decimal
 
-from django.db import migrations, models, connection
+from django.db import migrations, models
 from django.core.serializers.json import DjangoJSONEncoder
 
 from models_logging.settings import ADDED, CHANGED, DELETED
@@ -16,11 +16,6 @@ old_actions = {
     'Added': ADDED,
     'Deleted': DELETED
 }
-
-
-def forwards_func(apps, schema_editor):
-    if connection.schema_name == 'public':
-        return
 
 
 def migrate_changed_data(apps, schema_editor):
@@ -78,7 +73,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(forwards_func),
         migrations.RenameModel(
             old_name='Changes',
             new_name='Change',
